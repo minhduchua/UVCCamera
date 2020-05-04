@@ -12,6 +12,13 @@ DEFAULT_JVM_OPTS=""
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
 
+script_path="$( cd "$(dirname "$0")" ; pwd -P )"
+if [ ! -f $script_path/gradle/wrapper/gradle-wrapper.jar ]
+then
+    wrapperUrl=`grep distributionUrl $script_path/gradle/wrapper/gradle-wrapper.properties`
+    echo "download $wrapperUrl and put it in $script_path/gradle/wrapper/gradle-wrapper.jar"
+    exit 1
+fi
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD="maximum"
 

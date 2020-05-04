@@ -46,6 +46,9 @@ proguard/
 build/
 build
 
+# wrapper
+gradle/wrapper/gradle-wrapper.jar
+
 # gedit
 *~
 
