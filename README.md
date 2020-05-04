@@ -1,6 +1,31 @@
 UVCCamera
 =========
 
+## idomed specs
+
+### Install SDK
+ 1. In android studio go to Tools > SDK manager
+ 2. You should see the list of SDK platforms. Above it click on `SDK Tools`
+ 3. Select NDK (side by side) and Cmake
+ 4. apply and follow installation process
+
+
+### Configure UVCCamera
+ 1. set correctly gradlew by dowloading gradle wrapper (see the distribution url in `./gradle/wrapper/gradle-wrapper.properties`)
+ 2. update local.properties to set sdk.dir to $ANDROID_HOME
+ 3. update local.properties to set ndk.dir to $ANDROID_HOME/ndk/ndk-version
+
+### Compile
+Compilation process should now simply work with `./gradlew build`
+
+Copy `libuvccamera/build/outputs/aar/*` to `idomed-repository/services/native/android/app/libuvcamera`
+
+Do not bother about aar size as the files are managed with git-lfs
+
+
+
+
+## Original
 library and sample to access to UVC web camera on non-rooted Android device
 
 Copyright (c) 2014-2017 saki t_saki@serenegiant.com
@@ -21,7 +46,7 @@ All files in the folder are under this Apache License, Version 2.0.
 Files in the jni/libjpeg, jni/libusb and jin/libuvc folders may have a different license,
 see the respective files.
 
-How to compile library  
+How to compile library
 =========
 The Gradle build system will build the entire project, including the NDK parts. If you want to build with Gradle build system,
 
@@ -31,10 +56,10 @@ The Gradle build system will build the entire project, including the NDK parts. 
 4. change directory into `UVCCamera` directory with `cd UVCCamera`
 5. build library with all sample projects using `gradle build`
 
-It will takes several minutes to build. Now you can see apks in each `{sample project}/build/outputs/apks` directory.  
-Or if you want to install and try all sample projects on your device, run `gradle installDebug`.  
+It will takes several minutes to build. Now you can see apks in each `{sample project}/build/outputs/apks` directory.
+Or if you want to install and try all sample projects on your device, run `gradle installDebug`.
 
-Note: Just make sure that `local.properties` contains the paths for `sdk.dir` and `ndk.dir`. Or you can set them as enviroment variables of you shell. On some system, you may need add `JAVA_HOME` envairoment valiable that points to JDK directory.  
+Note: Just make sure that `local.properties` contains the paths for `sdk.dir` and `ndk.dir`. Or you can set them as enviroment variables of you shell. On some system, you may need add `JAVA_HOME` envairoment valiable that points to JDK directory.
 
 If you want to use Android Studio(unfortunately NDK supporting on Android Studio is very poor though),
 1. make directory on your favorite place (this directory is parent directory of `UVCCamera` project).
@@ -46,7 +71,7 @@ If you want to use Android Studio(unfortunately NDK supporting on Android Studio
 sdk.dir={path to Android SDK on your storage}
 ndk.dir={path to Android SDK on your storage}
 ```
-Please replace actual path to SDK and NDK on your storage.  
+Please replace actual path to SDK and NDK on your storage.
 Of course you can make `local.properties` by manually instead of using automatically generated ones by Android Studio.
 6. Synchronize project
 7. execute `Make project` from `Build` menu.
@@ -132,11 +157,11 @@ Fixed the issue of pixel format is wrong when NV21 mode on calling IFrameCallbac
 Improve the issue of `USBCameraTest4` that fails to connect/disconnect.
 
 ### 2015/07/19
-Add new methods to get/set camera features like brightness, contrast etc.  
-Add new method to get supported resolution from camera as json format.  
+Add new methods to get/set camera features like brightness, contrast etc.
+Add new method to get supported resolution from camera as json format.
 
 ### 2015/08/17
-Add new sample project `USBCameraTest7` to demonstrate how to use two camera at the same time.  
+Add new sample project `USBCameraTest7` to demonstrate how to use two camera at the same time.
 
 ### 2015/09/20
 Fixed the issue that building native libraries fail on Windows.
@@ -160,7 +185,7 @@ apply bandwidth factor setting of usbcameratest7 on master branch
 Now this repository supports Android N(7.x) and dynamic permission model of Android N and later.
 
 ### 2017/01/16
-Add new sample app `usbCameraTest8` to show how to set/get uvc control like brightness 
+Add new sample app `usbCameraTest8` to show how to set/get uvc control like brightness
 
 ### 2017/04/17
 Add new sample app on [OpenCVwithUVC](https://github.com/saki4510t/OpenCVwithUVC.git) repository.
