@@ -49,6 +49,9 @@ build
 # wrapper
 gradle/wrapper/gradle-wrapper.jar
 
+# android studio
+.DS_STORE
+
 # gedit
 *~
 
