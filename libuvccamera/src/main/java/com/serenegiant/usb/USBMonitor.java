@@ -48,6 +48,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
+import android.os.Build;
+
 import com.serenegiant.utils.BuildCheck;
 import com.serenegiant.utils.HandlerThreadHandler;
 
@@ -664,7 +666,7 @@ public final class USBMonitor {
 			}
 			sb.append(device.getManufacturerName());	sb.append("#");	// API >= 21
 			sb.append(device.getConfigurationCount());	sb.append("#");	// API >= 21
-			if (BuildCheck.isMarshmallow()) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 				sb.append(device.getVersion());			sb.append("#");	// API >= 23
 			}
 		}
@@ -887,12 +889,12 @@ public final class USBMonitor {
 		info.clear();
 
 		if (device != null) {
-			if (BuildCheck.isLollipop()) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				info.manufacturer = device.getManufacturerName();
 				info.product = device.getProductName();
 				info.serial = device.getSerialNumber();
 			}
-			if (BuildCheck.isMarshmallow()) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 				info.usb_version = device.getVersion();
 			}
 			if ((manager != null) && manager.hasPermission(device)) {
@@ -1241,7 +1243,7 @@ public final class USBMonitor {
 				final int n = device.getInterfaceCount();
 				for (int i = 0; i < n; i++) {
 					final UsbInterface temp = device.getInterface(i);
-					if ((temp.getId() == interface_id) && (temp.getAlternateSetting() == altsetting)) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && (temp.getId() == interface_id) && (temp.getAlternateSetting() == altsetting)) {
 						intf = temp;
 						break;
 					}
